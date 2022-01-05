@@ -4,6 +4,9 @@
 # - tense
 # - past, present, future
 
+# This a good example of how words contribute to predictability in context.
+# otent language features can convey information like plurality, tense
+
 import nltk
 from collections import Counter
 

@@ -50,8 +50,50 @@ We assume text is predicatable.
 
 - Take **tokens** strings of data, give a context and define a **constrained numeric decision space** on which models can compute.
 
+**types of natural language processing**
+- Phologic
+- syntatic
+- semantic
+
 ## STEPS
 1. Identify features of data. 
 2. Context modifies, interpretation
 3. Create a the traditional **bag-of-words** model
 
+### nltk
+- methods
+  - `sent_tokenize` Tokenize a sentence from a paragrahp
+  - `word_tokenize` gather all words in a tokenized sentence and tokenize them
+
+## Sentiment Analysis
+Very popular text classification technique to get the tone of text and can lead to aggregate analysis. Is fundamentally different from gender classification that is dependent on **word sense**, **contenxt**. It can be negated. Many models take into account localization of words in their context.
+
+## Bag-of-words
+Simple modle that evaluates the frequency with which words appear and appear with others in a specif limted context (co-occurences). Co-occurences show which words are likely to proceed and succeed each other. Whic allow us to make inferences on limited pices of text.
+
+## Word ordering
+We can use statistical inference methods to make predictions about word ordering. We can find correlation of words and phrases. This part of **n-gram analysis** n specifies a ordered sequence of either characters or words to scan. It requires some ability to learn the relationship of text to some targe variable.
+
+Laguage features and contextual ones contribute to the overall predictabiility of language for analytical puposes.
+
+## Structural features
+Important to consider high-level units of language used by linguistics, which give us a vocabulary for the operation we'll perform
+
+Different units of language are used to compute at a variety of levels.
+
+**semantics** refer to meaning, deeply encoded in language, difficulte to extract. There is a template (subject, predicate, object)
+
+**ontologies** can be made from the templates and define the relationships between entities.Requires knowledge of teh context and the domain, does not scale well.
+
+**Semantic analysis** is about understanding meaning of text but about generating data structures to which logical reasoning can be applied.
+"Themantic meaning representations" (TMRs) to which first-order logic of "lambda" calculus can be applied 
+Networks can be used to encode predicate interactions of features.
+Traversal can be used to analyze the centrality of terms or subjects.
+Graph analysis can produce insights.
+
+**Syntax**
+Formation rules defined by grammar. Syntatic analysis used to show relationship of words. Relationship of tokes in a tree structure. How words modify each other in the formation of phrases.
+
+**morphology** The form of things. The form fo individual words or tokens. Plurality, tense, conjugation. Tough due to special cases. To understand the parts of wors so we can assign them to classes. **PART OF SPEECH** tags. To know if singular noun, plural noun, proper noun, verb is conjugated.
+
+Vectorization is applid to these structures to create numeric feature spaces.
