@@ -33,3 +33,6 @@ select model family to mininmize error, fitted model can make predictions return
 
 ## Example Repository
 [link](https://github.com/foxbook/atap)
+
+## Quick reference to use docker
+https://docs.docker.com/compose/gettingstarted/

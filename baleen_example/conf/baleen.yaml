@@ -1,0 +1,23 @@
+# Configuration file for the Baleen application
+# This file belongs in: /etc/baleen.yaml
+
+# Basic Flags
+debug: true
+
+# Logging Information
+logfile: 'baleen.log'
+loglevel: 'DEBUG'
+
+# Use Requests to fetch complete HTML
+fetch_html: True
+
+# Database Information
+database:
+    host: mongo
+    port: 27017
+    name: baleen
+
+# Web Admin Server
+server:
+    host: 0.0.0.0
+    port: 5000

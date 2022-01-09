@@ -1,0 +1,19 @@
+mongo:
+   image: mongo:3.2.3
+   environment:
+      - MONGO_INITDB_DATABASE=baleen
+   ports:
+      - 27017:27017
+   restart: always
+app:
+   build: .
+   dockerfile: Dockerfile-app
+   environment:
+      - VIRTUAL_ENV=/usr/local/
+   volumes:
+      - .:/baleen
+   links:
+      - mongo
+   ports:
+      - 5000:5000
+   restart: always
