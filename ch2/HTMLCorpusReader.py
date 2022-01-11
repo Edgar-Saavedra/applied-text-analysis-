@@ -1,9 +1,10 @@
 from nltk.corpus.reader.api import CorpusReader
-from nltk.corpus.reader.aligned import CategorizedCorpusReader
+from nltk.corpus.reader.api import CategorizedCorpusReader
+import os
 import codecs
 
 CAT_PATTERN = r'([a-z_\s]+)/.*'
-DOC_PATTERN = r'(?\.)[a-z_\s]+/[a-f0-9]+\.json'
+DOC_PATTERN = r'(?!\.)[a-z_\s]+/[a-f0-9]+\.json'
 TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'p', 'li']
 
 class HTMLCorpusReader(CategorizedCorpusReader, CorpusReader):
@@ -55,7 +56,7 @@ class HTMLCorpusReader(CategorizedCorpusReader, CorpusReader):
     fileids = self.resolve(fileids, categories)
 
     # create a generator, loading one document into memory at a time.
-    for path, encoding in self.abspath(fileids, include_encoding=True):
+    for path, encoding in self.abspaths(fileids, include_encoding=True):
       with codecs.open(path, 'r', encoding=encoding) as f:
         yield f.read()
   
@@ -69,5 +70,5 @@ class HTMLCorpusReader(CategorizedCorpusReader, CorpusReader):
     fileids = self.resolve(fileids, categories)
 
     # Create a generator, getting every path and computig filesize
-    for path in self.abspath(fileids):
+    for path in self.abspaths(fileids):
       yield os.path.getsize(path)
