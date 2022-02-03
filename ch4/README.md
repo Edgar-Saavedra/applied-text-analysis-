@@ -77,3 +77,6 @@ The frequency vector encoder is called `doc2Bow`.
 - returns sparse matrix of tupels (id, count)
 
 See `FrequencyVectorGensim.py`
+
+## One-Hot Encoding
+
