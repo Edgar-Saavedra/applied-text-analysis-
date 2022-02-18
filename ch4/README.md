@@ -79,4 +79,18 @@ The frequency vector encoder is called `doc2Bow`.
 See `FrequencyVectorGensim.py`
 
 ## One-Hot Encoding
+Tokes that occur very frequently are order of magnitude more "significant" than other, less frequent ones which can impact noramlly distributed features. One-hot encoding is a boolean vector encoding method that marks a particular vect index with a value of 1 (true) if the token exists in the document and 0 (false) if it does not.
 
+I t reduces the imbalance issue of the distrubution, simplifying a docuemnt to its constituent components. commonly used in NNs.
+
+## Distrubuted Representation
+One-hot, TF-IDF enable us to put documents into vector space. Useful to also encode similarities between documents in the context of that same vector space. We encode docuemtns along a continuous sclae with a distributed representation. 
+
+**The Complexity** of this space is the product of how the mapping to that representation is learned. The product of how that representation is trained, not directly tied to the document itself.
+
+### word2vec
+Algorithm trains word representations based on the either a continous bag-of-words or skip diagram model.
+Words are embedded in space along similar words based on their context.
+
+### doc2vec
+extension of word2ved. Proposes **paragraph vector** an **unsupervised algo**. Attempts to inherit the semantic properties of words. Takes into consideration the ordering of words within a narrow context.
