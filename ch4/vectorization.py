@@ -98,7 +98,7 @@ def ntlk_onehot_vectorization(corpus):
 # - Binarizer uses threshold value (0 default)
 # - those that are greater than threshold are set to 1
 def scikit_learn_onehot_vectorization(corpus):
-  from sklearn.preprocessing.import Binarizer
+  from sklearn.preprocessing import Binarizer
   from sklearn.feature_extraction.text import CountVectorizer
 
   freq = CountVectorizer()
