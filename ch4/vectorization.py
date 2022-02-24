@@ -1,3 +1,4 @@
+import imp
 import nltk
 import string
 
@@ -44,9 +45,9 @@ def nltk_frequency_vectorize(doc):
     features[token] += 1
   return features
 
-vectors = map(vectorize, corpus)
-for value in vectors:
-  print(value)
+# vectors = map(vectorize, corpus)
+# for value in vectors:
+#   print(value)
 
 # In Scikit-learn
 # - CountVectorizer transformer from the sklearn.feature_extration model has its own tokenization and normalization
@@ -108,6 +109,7 @@ def scikit_learn_onehot_vectorization(corpus):
   # toarray() convers the sparse matrix representation to a dense one. Corpora with large vocabs better to have
   # a sparse matrix
   corpus = onehot.fit_transform(corpus.toarray())
+  return corpus
 
 # ** One-hot encoding represent similarity and difference at the document level, cuz words are equidistant, it is not
 # able to encode per-word similarity. Normalizing tokens ensures that different forms of tokens are treate as a single vector,
@@ -155,6 +157,54 @@ def nltk_tfidf_vectorize(corpus):
         term: texts.tf_idf(term, doc)
         for term in doc
       }
+  return vectorize(corpus)
+
+
+# Sciki-Learn provides a transformer called TfidfVectorizer in the module called
+# feature extraction text for vectorizing with TF-IDF scores.
+# under the hood it uses the CountVectorizer estimator followed by a TfidF Transformer
+
+# the input for TfidfVectorizer is expected to be a sequence of filenames, file-like objects or strings that
+# contain a collection of raw documents
+
+# the vectorzier returns a spares matrix representation in the form of ((doc, term), tfidf)
+def scikit_learn_tfidf_vectorize(corpus):
+  from sklearn.feature_extraction.text import TfidfVectorizer
+
+  def vectorize(corpus):
+    tfidf = TfidfVectorizer()
+    return tfidf.fit_transform(corpus)
+
+  return vectorize(corpus)
+
+# In gensim the TfidfModeld data structure is similar to the Dictionary object in that it stores
+# a mapping of terms and their vector positions in the order they are observed.
+# Gensim allows us to apply our own tokenization moethod, expecting a corpus that is alist of tokens.
+# we construct the lexocn and use it to instanciate the TfidModel, which computes the normalized 
+# inverse document frequency. We can the fetch the TF-IDF representation for each vector using getitem
+
+# gensim provides helper functionality to write dictions and models to disk in compact format.
+# you can save bothh the TF-IDF model and the lexicon, to load them later to vectorize new docs
+# there is a binary format, save_as_text allows easy inspection of the dictionary for later work.
+def gensim_tfidf_vectorizer(corpus, save=False):
+  import gensim
+  corpus = [tokenize(doc) for doc in corpus]
+  lexicon = gensim.corpora.Dictionary(corpus)
+  tfidf = gensim.models.TfidfModel(dictionary=lexicon, normalize=True)
+  vectors = [tfidf[lexicon.doc2bow(doc)] for doc in corpus]
+
+  if (save):
+    lexicon.save_as_text('lexicon.txt', sort_by_word=True)
+    tfidf.save('tfidf.pkl')
+  return vectors
+
+def gensim_load_tfidf_lexicon(lexicon='lexicon.txt'):
+  import gensim
+  return gensim.corpora.Dictionary.load_from_text(lexicon)
+
+def gensim_load_tfidf_model(pkl='tifidf.pkl'):
+  import gensim
+  return gensim.models.TfidfModel.load(pkl)
 
 # Driver code to check above generator function
 # for value in [tokenize(set) for sent in corpus] : 

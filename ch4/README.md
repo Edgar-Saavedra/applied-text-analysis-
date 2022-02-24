@@ -94,3 +94,10 @@ Words are embedded in space along similar words based on their context.
 
 ### doc2vec
 extension of word2ved. Proposes **paragraph vector** an **unsupervised algo**. Attempts to inherit the semantic properties of words. Takes into consideration the ordering of words within a narrow context.
+
+Vectorization Method | Function | Good For | Considerations
+
+Frequency - Counts term frequencies - good for Bayesian Models - Most frequent words sometimes not most informative
+One-Hot Encoding - Binarizes term occurrence - NNs - All word equidistant, so normalization very important
+TF-IDF - Normalizes term frequencies accross documents - General Purpose - Moderaltly frequent terms may not be representative of docuemtn topics
+Distributed Representations - Context-based, continuous, term similarity encoding - modeling more complex relationships - performance intensive; difficult to scale without tools (tensorflow)
