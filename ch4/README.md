@@ -101,3 +101,6 @@ Frequency - Counts term frequencies - good for Bayesian Models - Most frequent w
 One-Hot Encoding - Binarizes term occurrence - NNs - All word equidistant, so normalization very important
 TF-IDF - Normalizes term frequencies accross documents - General Purpose - Moderaltly frequent terms may not be representative of docuemtn topics
 Distributed Representations - Context-based, continuous, term similarity encoding - modeling more complex relationships - performance intensive; difficult to scale without tools (tensorflow)
+
+### Scikit-Learn API
+API is object oriented at the root is
